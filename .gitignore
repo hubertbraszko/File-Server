@@ -1,0 +1,13 @@
+Topics/
+/.gradle/
+course-info.yaml
+course-remote-info.yaml
+/File Server/*
+!/File Server/task
+/File Server/task/*
+!/File Server/task/src
+!/File Server/task/resources
+!/File Server/task/build.gradle
+/util/
+/.idea/
+
