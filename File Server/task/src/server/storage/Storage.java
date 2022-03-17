@@ -15,7 +15,7 @@ public class Storage {
     }
 
     public boolean addFile(File file) {
-        if(storedFiles.size() < MAX_NUMBER_OF_FILES && file.getName().matches("file[0-9](0)?") && !containsFileWithName(file.getName())) {
+        if((storedFiles.size() < MAX_NUMBER_OF_FILES) && file.getName().matches("file[0-9](0)?") && !containsFileWithName(file.getName())) {
             return storedFiles.add(file);
         }
         return false;
