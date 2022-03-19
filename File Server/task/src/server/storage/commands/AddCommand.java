@@ -14,15 +14,21 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(){
-        boolean result = storage.addFile(file);
-        String message = getFormattedMessage(result);
-        System.out.println(message);
+    public CommandResult execute(){
+        boolean isSuccess = storage.addFile(file);
+        String message = getFormattedMessage(isSuccess);
+        int code = getCode(isSuccess);
+
+        return new CommandResult(code, message);
     }
 
-    private String getFormattedMessage(boolean result) {
+    private String getFormattedMessage(boolean isSuccess) {
         String SUCCESS_MESSAGE = "The file %s added successfully";
         String FAILURE_MESSAGE = "Cannot add the file %s";
-        return String.format(result ? SUCCESS_MESSAGE : FAILURE_MESSAGE, file.getName());
+        return String.format(isSuccess ? SUCCESS_MESSAGE : FAILURE_MESSAGE, file.getName());
+    }
+
+    private int getCode(boolean isSuccess) {
+        return isSuccess ? Codes.OK : Codes.FORBIDDEN;
     }
 }

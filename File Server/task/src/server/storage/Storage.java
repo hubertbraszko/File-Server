@@ -2,6 +2,7 @@ package server.storage;
 
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 
 public class Storage {
@@ -25,9 +26,10 @@ public class Storage {
         return storedFiles.removeIf(file -> file.getName().equals(name));
     }
 
-    public boolean getFile(String name) {
-        return containsFileWithName(name);
-        //TODO
+    public Optional<File> getFile(String name) {
+        return storedFiles.stream()
+                .filter(file -> name.equals(file.getName()))
+                .findFirst();
     }
 
     private boolean containsFileWithName(String name) {

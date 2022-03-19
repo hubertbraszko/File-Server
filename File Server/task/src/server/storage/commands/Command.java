@@ -10,5 +10,5 @@ public abstract class Command {
         this.storage = storage;
     }
 
-    public abstract void execute();
+    public abstract CommandResult execute();
 }
