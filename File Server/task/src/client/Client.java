@@ -29,17 +29,18 @@ public class Client {
     }
 
     private Response makeExchange(Request request) {
+        String receivedMsg = "";
         try (
                 Socket socket = new Socket(serverAddress, serverPort);
                 DataInputStream input = new DataInputStream(socket.getInputStream());
                 DataOutputStream output  = new DataOutputStream(socket.getOutputStream())
         ) {
             output.writeUTF(request.toString()); // sending message to the server
-            String receivedMsg = input.readUTF(); // response message
+            receivedMsg = input.readUTF(); // response message
 
         } catch (IOException e) {
             System.out.println("Could not connect to the server");
         }
-        return null; //TODO
+        return Response.parseResponse(receivedMsg);
     }
 }
