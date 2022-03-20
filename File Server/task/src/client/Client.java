@@ -41,9 +41,10 @@ public class Client {
             output.writeUTF(msg); // sending message to the server
             String receivedMsg = input.readUTF(); // response message
 
-            System.out.println("Received: " + receivedMsg);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return ""; //TODO
     }
 }
