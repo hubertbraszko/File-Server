@@ -2,19 +2,19 @@ package client.request;
 
 public class Request {
 
-    private final String filename;
+    private final String fileName;
     private final String action;
     private final String fileContent; //TODO temporary solution
 
-    public Request(String action, String filename) {
+    public Request(String action, String fileName) {
         this.action = action;
-        this.filename = filename;
+        this.fileName = fileName;
         this.fileContent = "";
     }
 
-    public Request(String action, String filename, String fileContent) {
+    public Request(String action, String fileName, String fileContent) {
         this.action = action;
-        this.filename = filename;
+        this.fileName = fileName;
         this.fileContent = fileContent;
     }
 
@@ -23,10 +23,17 @@ public class Request {
     }
 
     public String getFilename() {
-        return filename;
+        return fileName;
     }
 
     public String getFileContent() {
         return fileContent;
+    }
+
+    @Override
+    public String toString() {
+       return "action: " + action + ",\n" +
+               "fileName: " + fileName + ",\n" +
+               "fileContent: " + fileContent;
     }
 }

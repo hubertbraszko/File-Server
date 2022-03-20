@@ -1,12 +1,14 @@
 package client;
 
 import client.request.Request;
+import client.response.Response;
 import client.ui.UserInterface;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+
 
 public class Client {
 
@@ -22,28 +24,22 @@ public class Client {
     }
 
     public void run() {
-        userInterface.promptUserForAction();
+        Request request = userInterface.promptUserForAction();
+        Response response = makeExchange(request);
     }
 
-    private String makeExchange(Request request) {
+    private Response makeExchange(Request request) {
         try (
                 Socket socket = new Socket(serverAddress, serverPort);
                 DataInputStream input = new DataInputStream(socket.getInputStream());
                 DataOutputStream output  = new DataOutputStream(socket.getOutputStream())
         ) {
-            System.out.println("Client started!");
-
-            String msg = "Give me everything you have!";
-
-            System.out.println("Sent: " + msg);
-
-            output.writeUTF(msg); // sending message to the server
+            output.writeUTF(request.toString()); // sending message to the server
             String receivedMsg = input.readUTF(); // response message
 
-
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Could not connect to the server");
         }
-        return ""; //TODO
+        return null; //TODO
     }
 }
