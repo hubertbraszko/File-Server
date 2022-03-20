@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.actions;
 
 import client.request.Request;
 

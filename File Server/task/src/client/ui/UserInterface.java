@@ -1,6 +1,10 @@
 package client.ui;
 
 import client.request.Request;
+import client.ui.actions.Action;
+import client.ui.actions.AddAction;
+import client.ui.actions.DeleteAction;
+import client.ui.actions.GetAction;
 
 import java.util.List;
 import java.util.Scanner;
@@ -20,9 +24,9 @@ public class UserInterface {
         inputScanner = new Scanner(System.in);
     }
 
-    public Request promptUserForAction() {
+    public Request promptUserForAction() throws IllegalArgumentException{
         printMenu();
-        int actionId = inputScanner.nextInt();
+        int actionId = Integer.parseInt(inputScanner.nextLine());
         Action requestedAction = actions.stream()
                 .filter(action -> action.getId() == actionId)
                 .findFirst()

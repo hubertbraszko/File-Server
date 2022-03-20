@@ -1,12 +1,13 @@
-package client.ui;
+package client.ui.actions;
 
 import client.request.Request;
 
 import java.util.Scanner;
 
-public class DeleteAction extends Action {
-    public DeleteAction() {
-        super(3, "delete a file");
+public class GetAction extends Action{
+
+    public GetAction() {
+        super(1, "get a file");
     }
 
     @Override
@@ -14,6 +15,6 @@ public class DeleteAction extends Action {
         System.out.println("Enter filename: ");
         String fileName = scanner.nextLine();
 
-        return new Request("delete", fileName);
+        return new Request("get", fileName);
     }
 }
