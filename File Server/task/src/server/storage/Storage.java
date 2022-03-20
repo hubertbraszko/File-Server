@@ -1,19 +1,16 @@
 package server.storage;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
 public class Storage {
 
-    private final List<File> storedFiles;
+    private final List<File> storedFiles = new ArrayList<>();
 
     private final int MAX_NUMBER_OF_FILES = 10;
-
-    public Storage(List<File> files){
-        this.storedFiles = files;
-    }
 
     public boolean addFile(File file) {
         if((storedFiles.size() < MAX_NUMBER_OF_FILES) && file.getName().matches("file[0-9](0)?") && !containsFileWithName(file.getName())) {

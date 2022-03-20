@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Storage storage = new Storage(new ArrayList<>());
+        Storage storage = new Storage();
         Scanner scanner = new Scanner(System.in);
         StorageCommandInvoker invoker = new StorageCommandInvoker();
         final int PORT = 34522;
