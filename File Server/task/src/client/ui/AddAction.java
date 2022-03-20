@@ -1,5 +1,9 @@
 package client.ui;
 
+import client.request.Request;
+
+import java.util.Scanner;
+
 public class AddAction extends Action {
 
     public AddAction() {
@@ -7,7 +11,12 @@ public class AddAction extends Action {
     }
 
     @Override
-    public void perform() {
-        //TODO
+    public Request makeRequest(Scanner scanner) {
+        System.out.println("Enter filename: ");
+        String fileName = scanner.nextLine();
+        System.out.println("Enter file content: ");
+        String fileContent = scanner.nextLine();
+
+        return new Request("add", fileName, fileContent);
     }
 }

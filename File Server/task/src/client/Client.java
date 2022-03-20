@@ -1,5 +1,6 @@
 package client;
 
+import client.request.Request;
 import client.ui.UserInterface;
 
 import java.io.DataInputStream;
@@ -13,24 +14,19 @@ public class Client {
     private final String serverAddress;
     private final int serverPort;
     private final UserInterface userInterface;
-    private final Scanner inputScanner;
+
 
     public Client(String serverAddress, int serverPort) {
         this.serverAddress = serverAddress;
         this.serverPort = serverPort;
         this.userInterface = new UserInterface();
-        inputScanner = new Scanner(System.in);
     }
 
     public void run() {
-        userInterface.promptUserForAction();
-        inputScanner.nextLine();
-        while (true) {
-            connect();
-        }
+
     }
 
-    private void connect() {
+    private String makeExchange(Request request) {
         try (
                 Socket socket = new Socket(serverAddress, serverPort);
                 DataInputStream input = new DataInputStream(socket.getInputStream());

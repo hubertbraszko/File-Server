@@ -1,5 +1,9 @@
 package client.ui;
 
+import client.request.Request;
+
+import java.util.Scanner;
+
 public abstract class Action {
 
     private final int id;
@@ -10,7 +14,7 @@ public abstract class Action {
         this.description = description;
     }
 
-    public abstract void perform();
+    public abstract Request makeRequest(Scanner scanner);
 
     public int getId() {
         return id;

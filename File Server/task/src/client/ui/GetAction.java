@@ -1,5 +1,9 @@
 package client.ui;
 
+import client.request.Request;
+
+import java.util.Scanner;
+
 public class GetAction extends Action{
 
     public GetAction() {
@@ -7,7 +11,10 @@ public class GetAction extends Action{
     }
 
     @Override
-    public void perform() {
-        //TODO
+    public Request makeRequest(Scanner scanner) {
+        System.out.println("Enter filename: ");
+        String fileName = scanner.nextLine();
+
+        return new Request("get", fileName);
     }
 }
