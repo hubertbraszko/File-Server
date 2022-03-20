@@ -15,7 +15,6 @@ public class Server {
     }
 
     public void runSocketServer(){
-//        int PORT = 34522;
         System.out.println("Server started!");
         try (ServerSocket server = new ServerSocket(port)) {
             try (

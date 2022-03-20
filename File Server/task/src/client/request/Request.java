@@ -32,8 +32,9 @@ public class Request {
 
     @Override
     public String toString() {
-       return "action: " + action + ",\n" +
+        String fileContentKeyValue = fileContent.isEmpty() ? "" : "fileContent: " + fileContent;
+        return "action: " + action + ",\n" +
                "fileName: " + fileName + ",\n" +
-               "fileContent: " + fileContent;
+               fileContentKeyValue;
     }
 }

@@ -25,7 +25,9 @@ public class Response {
         Map<String, String> responseMap = new HashMap<>();
         for(String pair : pairs) {
             String[] keyValue = pair.split(": ");
-            responseMap.put(keyValue[0], keyValue[1]);
+            if(keyValue.length > 1) {
+                responseMap.put(keyValue[0], keyValue[1]);
+            }
         }
         int code = Integer.parseInt(responseMap.getOrDefault("code", "400"));
         String message = responseMap.getOrDefault("message", "Something went wrong");
