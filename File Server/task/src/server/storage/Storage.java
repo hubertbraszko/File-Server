@@ -1,6 +1,8 @@
 package server.storage;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,10 +12,17 @@ public class Storage {
 
     private final List<File> storedFiles = new ArrayList<>();
     private final int MAX_NUMBER_OF_FILES = 10;
-
     public boolean addFile(String fileName, String fileContent) {
-        if((storedFiles.size() < MAX_NUMBER_OF_FILES) && fileName.matches("file[0-9](0)?") && !containsFileWithName(fileName)) {
-            return storedFiles.add(new File("S")); //TODO
+        if(!containsFileWithName(fileName)) {
+            String filePath = String.format("File Server/task/src/server/data/%s", fileName);
+            File file = new File(filePath);
+            try(FileWriter fileWriter = new FileWriter(file)) {
+                fileWriter.write(fileContent);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
+            return storedFiles.add(file);
         }
         return false;
     }
