@@ -1,5 +1,8 @@
 package server.storage.commands;
 
+import client.request.Request;
+import client.response.Response;
+
 import java.io.File;
 import java.util.Optional;
 
@@ -31,5 +34,9 @@ public class CommandResult {
 
     public Optional<File> getFile() {
         return Optional.ofNullable(file);
+    }
+
+    public Response toResponse() {
+        return new Response(this.code, this.message);
     }
 }

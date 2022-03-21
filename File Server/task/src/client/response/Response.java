@@ -34,4 +34,10 @@ public class Response {
 
         return new Response(code, message);
     }
+
+    @Override
+    public String toString() {
+        return "code: " + code + ",\n" +
+                "message: " + message;
+    }
 }

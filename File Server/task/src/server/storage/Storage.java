@@ -9,12 +9,11 @@ import java.util.Optional;
 public class Storage {
 
     private final List<File> storedFiles = new ArrayList<>();
-
     private final int MAX_NUMBER_OF_FILES = 10;
 
-    public boolean addFile(File file) {
-        if((storedFiles.size() < MAX_NUMBER_OF_FILES) && file.getName().matches("file[0-9](0)?") && !containsFileWithName(file.getName())) {
-            return storedFiles.add(file);
+    public boolean addFile(String fileName, String fileContent) {
+        if((storedFiles.size() < MAX_NUMBER_OF_FILES) && fileName.matches("file[0-9](0)?") && !containsFileWithName(fileName)) {
+            return storedFiles.add(new File("S")); //TODO
         }
         return false;
     }

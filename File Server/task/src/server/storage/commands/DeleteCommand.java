@@ -1,19 +1,17 @@
 package server.storage.commands;
 
+import client.request.Request;
 import server.storage.Storage;
 
 public class DeleteCommand extends Command {
 
-    private final String fileName;
-
-    public DeleteCommand(Storage storage, String fileName) {
+    public DeleteCommand(Storage storage) {
         super(storage);
-        this.fileName = fileName;
     }
 
     @Override
     public CommandResult execute() {
-        boolean isSuccess = storage.deleteFile(fileName);
+        boolean isSuccess = storage.deleteFile(context.getFilename());
         String message = getFormattedMessage(isSuccess);
         int code = getCode(isSuccess);
 
@@ -23,7 +21,7 @@ public class DeleteCommand extends Command {
     private String getFormattedMessage(boolean isSuccess) {
         String SUCCESS_MESSAGE = "The file %s was deleted";
         String FAILURE_MESSAGE = "The file %s not found";
-        return String.format(isSuccess ? SUCCESS_MESSAGE : FAILURE_MESSAGE, fileName);
+        return String.format(isSuccess ? SUCCESS_MESSAGE : FAILURE_MESSAGE, context.getFilename());
     }
 
     private int getCode(boolean isSuccess) {

@@ -7,6 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
         Client client = new Client(SERVER_ADDRESS, SERVER_PORT);
-        client.run();
+        while (true) {
+            client.run();
+        }
     }
 }

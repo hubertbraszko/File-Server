@@ -1,5 +1,6 @@
 package server.storage.commands;
 
+import client.request.Request;
 import server.storage.Storage;
 
 import java.io.File;
@@ -7,16 +8,13 @@ import java.util.Optional;
 
 public class GetCommand extends Command {
 
-    private final String fileName;
-
-    public GetCommand(Storage storage, String fileName) {
+    public GetCommand(Storage storage) {
         super(storage);
-        this.fileName = fileName;
     }
 
     @Override
     public CommandResult execute() {
-        Optional<File> file = storage.getFile(fileName);
+        Optional<File> file = storage.getFile(context.getFilename());
         boolean isSuccess = file.isPresent();
         String message = getFormattedMessage(isSuccess);
         int code = getCode(isSuccess);
@@ -26,7 +24,7 @@ public class GetCommand extends Command {
     private String getFormattedMessage(boolean isSuccess) {
         String SUCCESS_MESSAGE = "The file %s was sent";
         String FAILURE_MESSAGE = "The file %s not found";
-        return String.format(isSuccess ? SUCCESS_MESSAGE : FAILURE_MESSAGE, fileName);
+        return String.format(isSuccess ? SUCCESS_MESSAGE : FAILURE_MESSAGE, context.getFilename());
     }
 
     private int getCode(boolean isSuccess) {

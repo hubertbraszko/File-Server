@@ -1,6 +1,7 @@
 package server.storage;
 
 import server.storage.commands.Command;
+import server.storage.commands.CommandResult;
 
 public class StorageCommandInvoker {
     private Command command;
@@ -9,7 +10,7 @@ public class StorageCommandInvoker {
         this.command = command;
     }
 
-    public void executeCommand() {
-        command.execute();
+    public CommandResult executeCommand() {
+        return command.execute();
     }
 }
