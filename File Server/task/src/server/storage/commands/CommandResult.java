@@ -28,7 +28,6 @@ public class CommandResult {
         return message;
     }
 
-
     public Response toResponse() {
         return new Response(this.code, this.message, this.fileContent);
     }

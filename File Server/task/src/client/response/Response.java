@@ -28,6 +28,10 @@ public class Response {
         return message;
     }
 
+    public String getFileContent() {
+        return fileContent;
+    }
+
     public static Response parseResponse(String str) {
         String[] pairs = str.split(",\n");
         Map<String, String> responseMap = new HashMap<>();

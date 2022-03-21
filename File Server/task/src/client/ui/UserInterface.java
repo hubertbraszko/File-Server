@@ -1,7 +1,9 @@
 package client.ui;
 
 import client.request.Request;
+import client.response.Response;
 import client.ui.actions.*;
+import server.storage.commands.Codes;
 
 import java.util.List;
 import java.util.Scanner;
@@ -48,5 +50,21 @@ public class UserInterface {
         actionsDescription.append("): ");
 
         return actionsDescription.toString();
+    }
+
+    //FIXME - make this code better
+    public String parseResponseForUser(Response response){
+        if(response.getCode() == Codes.OK) {
+            if(response.getMessage().contains("added")) {
+                return "The response says that the file was created!";
+            } else if (response.getMessage().contains("sent")) {
+                return "The content of the file is: " + response.getFileContent();
+            }
+            return "The response says that the file was successfully deleted!";
+        } else if (response.getCode() == Codes.NOT_FOUND) {
+            return "The response says that the file was not found!";
+        } else {
+            return "The response says that creating the file was forbidden!";
+        }
     }
 }

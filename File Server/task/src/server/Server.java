@@ -33,7 +33,6 @@ public class Server {
     }
 
     public void runSocketServer(){
-        System.out.println("Server started!");
         try (ServerSocket server = new ServerSocket(port)) {
             try (
                     Socket socket = server.accept();

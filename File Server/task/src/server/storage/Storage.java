@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +16,9 @@ public class Storage {
 
         String filePath = getRelativePathToFile(fileName);
         File file = new File(filePath);
+        if(file.isFile()) {
+            return false;
+        }
         try(FileWriter fileWriter = new FileWriter(file)) {
             fileWriter.write(fileContent);
             result = true;
@@ -49,7 +51,7 @@ public class Storage {
     }
 
     private String getRelativePathToFile(String fileName) {
-        String dataRelativePath = "File Server/task/src/server/data/%s";
+        String dataRelativePath = "/home/hubert/Projects/File Server/File Server/task/src/server/data/%s";
         return String.format(dataRelativePath, fileName);
     }
 }

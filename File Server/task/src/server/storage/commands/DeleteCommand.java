@@ -1,6 +1,5 @@
 package server.storage.commands;
 
-import client.request.Request;
 import server.storage.Storage;
 
 public class DeleteCommand extends Command {

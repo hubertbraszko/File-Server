@@ -26,7 +26,8 @@ public class Client {
     public void run() {
         Request request = userInterface.promptUserForAction();
         Response response = makeExchange(request);
-        System.out.println("RESPONSE: \n" + response.toString());
+        //System.out.println("RESPONSE: \n" + response.toString());
+        System.out.println(userInterface.parseResponseForUser(response));
     }
 
     private Response makeExchange(Request request) {
