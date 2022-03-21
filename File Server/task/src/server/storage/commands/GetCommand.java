@@ -1,9 +1,9 @@
 package server.storage.commands;
 
-import client.request.Request;
 import server.storage.Storage;
 
 import java.io.File;
+import java.util.List;
 import java.util.Optional;
 
 public class GetCommand extends Command {
@@ -14,11 +14,12 @@ public class GetCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        Optional<File> file = storage.getFile(context.getFilename());
+        Optional<List<String>> file = storage.getFile(context.getFilename());
         boolean isSuccess = file.isPresent();
         String message = getFormattedMessage(isSuccess);
         int code = getCode(isSuccess);
-        return isSuccess ? new CommandResult(code, message, file.get()) : new CommandResult(code, message);
+
+        return isSuccess ? new CommandResult(code, message, String.join("\n", file.get())) : new CommandResult(code, message);
     }
 
     private String getFormattedMessage(boolean isSuccess) {

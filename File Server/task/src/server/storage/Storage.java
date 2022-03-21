@@ -3,6 +3,10 @@ package server.storage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -30,11 +34,18 @@ public class Storage {
         return fileToBeDeleted.delete();
     }
 
-    public Optional<File> getFile(String fileName) {
+    public Optional<List<String>> getFile(String fileName) {
         String pathToFile = getRelativePathToFile(fileName);
-        File file = new File(pathToFile).isFile() ? new File(pathToFile) : null;
-
-        return Optional.ofNullable(file);
+        File file = new File(pathToFile);
+        List<String> fileContent = null;
+        if(file.isFile()) {
+            try {
+                fileContent = Files.readAllLines(Paths.get(pathToFile));
+            } catch (IOException e) {
+                System.out.println("Cant read file content");
+            }
+        }
+        return Optional.ofNullable(fileContent);
     }
 
     private String getRelativePathToFile(String fileName) {

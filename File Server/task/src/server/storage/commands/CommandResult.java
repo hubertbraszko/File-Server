@@ -1,27 +1,23 @@
 package server.storage.commands;
 
-import client.request.Request;
 import client.response.Response;
-
-import java.io.File;
-import java.util.Optional;
 
 public class CommandResult {
 
     private final int code;
     private final String message;
-    private File file;
+    private String fileContent;
 
 
     CommandResult(int code, String message) {
         this.code = code;
         this.message = message;
-        this.file = null;
+        this.fileContent = "";
     }
 
-    CommandResult(int code, String message, File file) {
+    CommandResult(int code, String message, String fileContent) {
         this(code,message);
-        this.file = file;
+        this.fileContent = fileContent;
     }
 
     public int getCode() {
@@ -32,11 +28,8 @@ public class CommandResult {
         return message;
     }
 
-    public Optional<File> getFile() {
-        return Optional.ofNullable(file);
-    }
 
     public Response toResponse() {
-        return new Response(this.code, this.message);
+        return new Response(this.code, this.message, this.fileContent);
     }
 }
