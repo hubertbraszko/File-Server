@@ -1,10 +1,7 @@
 package client.ui;
 
 import client.request.Request;
-import client.ui.actions.Action;
-import client.ui.actions.AddAction;
-import client.ui.actions.DeleteAction;
-import client.ui.actions.GetAction;
+import client.ui.actions.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,14 +16,16 @@ public class UserInterface {
         this.actions = List.of(
                 new GetAction(),
                 new AddAction(),
-                new DeleteAction());
+                new DeleteAction(),
+                new ExitAction());
         this.menu = composeMenu();
         inputScanner = new Scanner(System.in);
     }
 
     public Request promptUserForAction() throws IllegalArgumentException{
         printMenu();
-        int actionId = Integer.parseInt(inputScanner.nextLine());
+        String input = inputScanner.nextLine();
+        int actionId = "exit".equals(input) ? 0 : Integer.parseInt(input);
         Action requestedAction = actions.stream()
                 .filter(action -> action.getId() == actionId)
                 .findFirst()
@@ -41,7 +40,9 @@ public class UserInterface {
     private String composeMenu(){
         StringBuilder actionsDescription = new StringBuilder("Enter action (");
         for(Action action : actions) {
-            actionsDescription.append(String.format("%d - %s, ", action.getId(), action.getDescription()));
+            if(action.isVisibleInUI()) {
+                actionsDescription.append(String.format("%d - %s, ", action.getId(), action.getDescription()));
+            }
         }
         actionsDescription.delete(actionsDescription.length() - 2, actionsDescription.length());
         actionsDescription.append("): ");

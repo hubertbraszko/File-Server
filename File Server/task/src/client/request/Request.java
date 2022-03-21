@@ -11,6 +11,12 @@ public class Request {
     private final String fileName;
     private final String fileContent; //TODO temporary solution
 
+    public Request(String action) {
+        this.action = action;
+        this.fileName = "";
+        this.fileContent = "";
+    }
+
     public Request(String action, String fileName) {
         this.action = action;
         this.fileName = fileName;

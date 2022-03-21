@@ -27,7 +27,8 @@ public class Server {
         this.commandMap = Map.of(
                 "add", new AddCommand(this.storage),
                 "get", new GetCommand(this.storage),
-                "delete", new DeleteCommand(this.storage)
+                "delete", new DeleteCommand(this.storage),
+                "exit", new ExitCommand(this.storage)
         );
     }
 

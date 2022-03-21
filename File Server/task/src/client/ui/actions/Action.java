@@ -8,6 +8,7 @@ public abstract class Action {
 
     private final int id;
     private final String description;
+    protected boolean isVisibleInUI = true;
 
     protected Action(int id, String description) {
         this.id = id;
@@ -22,5 +23,9 @@ public abstract class Action {
 
     public String getDescription() {
         return description;
+    }
+
+    public boolean isVisibleInUI() {
+        return isVisibleInUI;
     }
 }
