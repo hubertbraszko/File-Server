@@ -12,7 +12,7 @@ import java.util.Optional;
 public class Storage {
 
     public boolean addFile(String fileName, String fileContent) {
-        boolean result = false;
+        boolean result;
 
         String filePath = getRelativePathToFile(fileName);
         File file = new File(filePath);
