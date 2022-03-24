@@ -5,6 +5,7 @@ import client.response.Response;
 import server.storage.Storage;
 import server.storage.StorageCommandInvoker;
 import server.storage.commands.*;
+import server.storage.commands.CommandResult.CommandResult;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

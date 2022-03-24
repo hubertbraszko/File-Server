@@ -1,9 +1,9 @@
 package server.storage.commands;
 
-import client.request.Request;
 import server.storage.Storage;
-
-import java.io.File;
+import server.storage.commands.CommandResult.Codes;
+import server.storage.commands.CommandResult.CommandResult;
+import server.storage.commands.CommandResult.CommandResultBuilder;
 
 public class AddCommand extends Command {
 
@@ -17,7 +17,10 @@ public class AddCommand extends Command {
         String message = getFormattedMessage(isSuccess);
         int code = getCode(isSuccess);
 
-        return new CommandResult(code, message);
+        return new CommandResultBuilder()
+                .setCode(code)
+                .setMessage(message)
+                .build();
     }
 
     private String getFormattedMessage(boolean isSuccess) {

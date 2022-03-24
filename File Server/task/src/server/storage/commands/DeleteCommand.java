@@ -1,6 +1,9 @@
 package server.storage.commands;
 
 import server.storage.Storage;
+import server.storage.commands.CommandResult.Codes;
+import server.storage.commands.CommandResult.CommandResult;
+import server.storage.commands.CommandResult.CommandResultBuilder;
 
 public class DeleteCommand extends Command {
 
@@ -14,7 +17,10 @@ public class DeleteCommand extends Command {
         String message = getFormattedMessage(isSuccess);
         int code = getCode(isSuccess);
 
-        return new CommandResult(code, message);
+        return new CommandResultBuilder()
+                .setCode(code)
+                .setMessage(message)
+                .build();
     }
 
     private String getFormattedMessage(boolean isSuccess) {

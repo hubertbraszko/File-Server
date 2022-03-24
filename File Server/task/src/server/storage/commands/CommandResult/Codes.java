@@ -1,4 +1,4 @@
-package server.storage.commands;
+package server.storage.commands.CommandResult;
 
 public class Codes {
 

@@ -1,8 +1,10 @@
 package server.storage.commands;
 
 import server.storage.Storage;
+import server.storage.commands.CommandResult.Codes;
+import server.storage.commands.CommandResult.CommandResult;
+import server.storage.commands.CommandResult.CommandResultBuilder;
 
-import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +20,13 @@ public class GetCommand extends Command {
         boolean isSuccess = file.isPresent();
         String message = getFormattedMessage(isSuccess);
         int code = getCode(isSuccess);
+        String fileContent = isSuccess ? String.join("\n", file.get()) : "";
 
-        return isSuccess ? new CommandResult(code, message, String.join("\n", file.get())) : new CommandResult(code, message);
+        return new CommandResultBuilder()
+                .setCode(code)
+                .setMessage(message)
+                .setFileContent(fileContent)
+                .build();
     }
 
     private String getFormattedMessage(boolean isSuccess) {

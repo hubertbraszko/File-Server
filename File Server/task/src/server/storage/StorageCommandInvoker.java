@@ -1,7 +1,7 @@
 package server.storage;
 
 import server.storage.commands.Command;
-import server.storage.commands.CommandResult;
+import server.storage.commands.CommandResult.CommandResult;
 
 public class StorageCommandInvoker {
     private Command command;

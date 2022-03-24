@@ -3,7 +3,7 @@ package client.ui;
 import client.request.Request;
 import client.response.Response;
 import client.ui.actions.*;
-import server.storage.commands.Codes;
+import server.storage.commands.CommandResult.Codes;
 
 import java.util.List;
 import java.util.Scanner;

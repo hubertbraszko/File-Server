@@ -1,6 +1,8 @@
 package server.storage.commands;
 
 import server.storage.Storage;
+import server.storage.commands.CommandResult.CommandResult;
+import server.storage.commands.CommandResult.CommandResultBuilder;
 
 public class ExitCommand extends Command{
     public ExitCommand(Storage storage) {
@@ -10,6 +12,9 @@ public class ExitCommand extends Command{
     @Override
     public CommandResult execute() {
         System.exit(0);
-        return new CommandResult(200, "Server shutdown");
+        return new CommandResultBuilder()
+                .setCode(200)
+                .setMessage("Server shutdown")
+                .build();
     }
 }

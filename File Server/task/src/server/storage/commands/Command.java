@@ -2,6 +2,7 @@ package server.storage.commands;
 
 import client.request.Request;
 import server.storage.Storage;
+import server.storage.commands.CommandResult.CommandResult;
 
 public abstract class Command {
 
