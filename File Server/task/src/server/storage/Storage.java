@@ -50,6 +50,7 @@ public class Storage {
         return Optional.ofNullable(fileContent);
     }
 
+    //FIXME
     private String getRelativePathToFile(String fileName) {
         String dataRelativePath = "/home/hubert/Projects/File Server/File Server/task/src/server/data/%s";
         return String.format(dataRelativePath, fileName);
